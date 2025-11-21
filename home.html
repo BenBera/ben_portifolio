@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ben Bera Kemboi | Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animations -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style id="app-style">
+        :root {
+            --primary-color: #06B6D4;
+            --secondary-color: #0891B2;
+            --bg-color: #F8FAFC;
+            --text-color: #1E293B;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .project-card {
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .skill-item {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .navbar-item {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-item:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .navbar-item:hover:after {
+            width: 100%;
+        }
+        
+        .navbar-item.active {
+            color: var(--primary-color);
+        }
+        
+        .navbar-item.active:after {
+            width: 100%;
+        }
+        
+        .form-input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+                transform: translateY(-100%);
+                z-index: 40;
+            }
+            
+            .mobile-nav.open {
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 28px;
+            padding-bottom: 32px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            z-index: 1;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 14px;
+            bottom: 0;
+            width: 2px;
+            background: #e2e8f0;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .hero-actions a {
+            display: inline-flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .hero-actions {
+                flex-direction: row;
+            }
+
+            .hero-actions a {
+                width: auto;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .project-card,
+            .skill-item,
+            .services-card {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                padding-left: 0;
+            }
+
+            .timeline-item::before,
+            .timeline-item::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            header nav {
+                gap: 1rem;
+            }
+
+            #hero {
+                padding-top: 6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header class="fixed w-full top-0 bg-white shadow-sm z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <nav class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#hero" class="text-xl font-bold text-gray-800 flex items-center">
+                        <span class="text-cyan-500">B</span>en<span class="text-cyan-500">.</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="navbar-item font-medium">About</a>
+                    <a href="#experience" class="navbar-item font-medium">Experience</a>
+                    <a href="#projects" class="navbar-item font-medium">Projects</a>
+                    <a href="#skills" class="navbar-item font-medium">Skills</a>
+                    <a href="#services" class="navbar-item font-medium">Services</a>
+                    <a href="#contact" class="navbar-item font-medium">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <div id="mobile-nav" class="mobile-nav md:hidden">
+            <div class="flex flex-col py-3 px-4 space-y-3">
+                <a href="#about" class="navbar-item py-2 font-medium">About</a>
+                <a href="#experience" class="navbar-item py-2 font-medium">Experience</a>
+                <a href="#projects" class="navbar-item py-2 font-medium">Projects</a>
+                <a href="#skills" class="navbar-item py-2 font-medium">Skills</a>
+                <a href="#services" class="navbar-item py-2 font-medium">Services</a>
+                <a href="#contact" class="navbar-item py-2 font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center pt-24 pb-12">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left" data-aos="fade-right">
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+                            Hi, I'm <span class="text-cyan-500">Ben Bera Kemboi</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-600 mb-8">Full-Stack Developer & DevOps Specialist with 5+ years of experience building scalable gaming platforms, designing end-to-end microservices, and managing high-performance server infrastructure. Skilled in delivering robust backend systems, intuitive frontend interfaces, and fully automated deployment pipelines with a strong focus on reliability, performance, and operational excellence</p>
+                        <div class="flex flex-col sm:flex-row w-full sm:w-auto sm:space-x-4 gap-4 hero-actions">
+                            <a href="#contact" class="btn-primary px-6 py-3 rounded-md font-medium text-white">Get In Touch</a>
+                            <a href="#projects" class="px-6 py-3 border-2 border-gray-300 rounded-md font-medium hover:border-cyan-500 hover:text-cyan-500 transition duration-300">View Projects</a>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left">
+                        <div class="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+                            <div class="absolute inset-0 rounded-full bg-cyan-500 opacity-10"></div>
+                            <div class="absolute inset-2 rounded-full bg-white flex items-center justify-center">
+                                <img src="images/7.jpeg" alt="Ben Bera Kemboi" class="rounded-full w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center gap-10">
+                    <div class="w-full md:w-1/3 mb-8 md:mb-0" data-aos="fade-right">
+                        <div class="rounded-lg shadow-lg overflow-hidden">
+                            <img src="https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_1280.png" alt="Development" class="w-full h-auto">
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3 md:pl-10" data-aos="fade-left">
+                        <div class="prose max-w-none">
+                            <p class="text-lg mb-4">
+                                I'm a passionate software engineer with over 5 years of professional experience specializing in backend development, DevOps, and building high-performance gaming platforms. Currently pursuing a BSc in Information Sciences at Moi University, I combine academic knowledge with extensive practical experience.
+                            </p>
+                            <p class="text-lg mb-4">
+                                Throughout my career, I've helped develop and manage sportsbook platforms for clients across Africa, implemented microservices architectures, and integrated various gaming providers including Pragmatic Play, SmartSoft Gaming, Betradar, and Genius Sports.
+                            </p>
+                            <p class="text-lg mb-4">
+                                My expertise extends to server management, containerization, and system orchestration using technologies like Docker, Kubernetes, GCP, and AWS. I'm passionate about building scalable, reliable solutions that deliver exceptional user experiences.
+                            </p>
+                            <div class="grid grid-cols-2 gap-4 mt-6">
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">Education</h3>
+                                    <p class="mb-1"><span class="font-medium">Degree:</span> BSc in Information Sciences</p>
+                                    <p><span class="font-medium">University:</span> Moi University, Eldoret</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-2">Contact</h3>
+                                    <p class="mb-1"><span class="font-medium">Email:</span> benbera25@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Professional Experience</h2>
+                
+                <div class="max-w-3xl mx-auto">
+                    <!-- Experience Item 1 -->
+                    <div class="timeline-item" data-aos="fade-up">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">Touchvas Innovations Ltd</h3>
+                                <span class="text-cyan-600 font-medium mt-1 md:mt-0">Aug 2025 - Present</span>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-700 mb-3">Consultant Developer</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Manage sportsbook platforms for clients across Africa (Kenya, DRC, Tanzania, Nigeria).</span>
+                                </li>
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Lead containerization and system orchestration (GCP, AWS, Kubernetes).</span>
+                                </li>
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Integrated casino, crash, and odds providers (Pragmatic Play, SmartSoft Gaming, Betradar, Genius Sports).</span>
+                                </li>
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Implemented payment integrations with providers across multiple countries.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 2 -->
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">Sparks Matrics Ltd</h3>
+                                <span class="text-cyan-600 font-medium mt-1 md:mt-0">Jul 2023 - Jul 2025</span>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-700 mb-3">Lead Developer</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Oversaw sportsbook platform for Maybets.com under sparksmatrix.com.</span>
+                                </li>
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Migrated the entire platform to a Microservices architecture.</span>
+                                </li>
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Integrated payment and tax compliance system for sportsbook and casino.</span>
+                                </li>
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Led DevOps team for implementations and deployments of products.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Experience Item 3 -->
+                    <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                <h3 class="text-xl font-bold text-gray-800">Titan Mobile Kenya</h3>
+                                <span class="text-cyan-600 font-medium mt-1 md:mt-0">Jul 2022 - Jul 2023</span>
+                            </div>
+                            <h4 class="text-lg font-semibold text-gray-700 mb-3">Lead Developer</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Managed sportsbook platforms for multiple clients.</span>
+                                </li>
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Integrated gaming providers (Pragmatic Play, SmartSoft, Betradar, etc.).</span>
+                                </li>
+                                <li class="flex">
+                                    <span class="text-cyan-500 mr-2">•</span>
+                                    <span>Delivered web design, development, and client-facing solutions.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- View More Button -->
+                    <div class="text-center mt-8" data-aos="fade-up">
+                        <button id="view-more-experience" class="btn-primary rounded-md px-6 py-3 font-medium">View More Experience</button>
+                    </div>
+                    
+                    <!-- Hidden Experience Items -->
+                    <div id="more-experience" class="hidden">
+                        <!-- Experience Item 4 -->
+                        <div class="timeline-item" data-aos="fade-up">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">Infinity Tech Ltd</h3>
+                                    <span class="text-cyan-600 font-medium mt-1 md:mt-0">Jan 2022 - Jul 2022</span>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">Software Developer</h4>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Managed infinitytechafrica.com platform and performed bulk-SMS integrations.</span>
+                                    </li>
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Delivered SMS services across Africa (Ghana, Tanzania, Kenya, etc.).</span>
+                                    </li>
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Lead developer for Foodwings Mobile App.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Experience Item 5 -->
+                        <div class="timeline-item" data-aos="fade-up">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">SmesTech Innovations</h3>
+                                    <span class="text-cyan-600 font-medium mt-1 md:mt-0">Oct 2021 - Jan 2022</span>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">Software Engineer</h4>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Configured and monitored servers for Omokabet Betting Site.</span>
+                                    </li>
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Contributed to Edupesa Fee Payment System (dashboard & features).</span>
+                                    </li>
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Handled testing and deployment of payment and betting systems.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Experience Item 6 -->
+                        <div class="timeline-item" data-aos="fade-up">
+                            <div class="bg-white rounded-lg shadow-md p-6">
+                                <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+                                    <h3 class="text-xl font-bold text-gray-800">Ally Innovations</h3>
+                                    <span class="text-cyan-600 font-medium mt-1 md:mt-0">Feb 2020 - Sept 2021</span>
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-700 mb-3">Intern Developer</h4>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Supported backend and frontend development.</span>
+                                    </li>
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Contributed to dashboard and website deployments.</span>
+                                    </li>
+                                    <li class="flex">
+                                        <span class="text-cyan-500 mr-2">•</span>
+                                        <span>Conducted QA testing.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Key Projects</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up">
+                        <div class="h-48 bg-cyan-100 flex items-center justify-center">
+                            <img src="images/bettingsite.jpg" alt="Sportsbook Platform preview" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Sportsbook Platforms</h3>
+                            <p class="text-gray-600 mb-4">Bandabet, Ushindibets, Shindapesa, Imarabet - Complete betting solutions with robust infrastructure.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">HAProxy</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">RabbitMQ/NATS/Kafka</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Redis/Aerospike</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">MySQL/Postgres</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">GCP/AWS</span>
+                            </div>
+                            <a href="javascript:void(0)" class="text-cyan-600 font-medium flex items-center hover:text-cyan-800 transition">
+                                View Details
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-cyan-100 flex items-center justify-center">
+                            <img src="https://cdn.pixabay.com/photo/2018/08/10/15/43/message-3597095_1280.jpg" alt="SMS Platform" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">SMSAfrica Platform</h3>
+                            <p class="text-gray-600 mb-4">Bulk SMS delivery platform integrating major telecom providers across Africa with user dashboards.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">PHP</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Vue.js</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">RabbitMQ</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Redis</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">SMPP</span>
+                            </div>
+                            <a href="javascript:void(0)" class="text-cyan-600 font-medium flex items-center hover:text-cyan-800 transition">
+                                View Details
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 3 -->
+                    <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-cyan-100 flex items-center justify-center">
+                            <img src="images/bayerapp.jpeg" alt="Mobile App" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Foodwings Mobile App</h3>
+                            <p class="text-gray-600 mb-4">Farm mapping mobile application enabling users to capture and view geocoordinates.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Flutter</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Dart</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">PHP</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">RESTful API</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Maps API</span>
+                            </div>
+                            <a href="javascript:void(0)" class="text-cyan-600 font-medium flex items-center hover:text-cyan-800 transition">
+                                View Details
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 4 -->
+                    <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up">
+                        <div class="h-48 bg-cyan-100 flex items-center justify-center">
+                            <img src="images/stories.jpeg" alt="Social Media" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Storiez App</h3>
+                            <p class="text-gray-600 mb-4">Social media application with posts, calls, and notifications using modern technology stack.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Flutter</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Elixir</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">WebSockets</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">FCM</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Asterisk</span>
+                            </div>
+                            <a href="https://play.google.com/store/apps/details?id=com.netflix.NGP.Saga&pcampaignid=web_share" class="text-cyan-600 font-medium flex items-center hover:text-cyan-800 transition">
+                                View Details
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 5 -->
+                    <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-cyan-100 flex items-center justify-center">
+                            <img src="https://cdn3.spotika.com/img/banner.6564e032.jpg" alt="Betting Platform" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Spotika Betting Site</h3>
+                            <p class="text-gray-600 mb-4">Complete betting platform with server setup, caching, and payment integrations.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Golang</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Vue</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">PHP</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">RabbitMQ</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">GCP</span>
+                            </div>
+                            <a href="https://www.spotika.com/en-ke/" class="text-cyan-600 font-medium flex items-center hover:text-cyan-800 transition">
+                                View Details
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 6 -->
+                    <div class="project-card rounded-lg overflow-hidden shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-cyan-100 flex items-center justify-center">
+                            <img src="images/payments.jpg" alt="Edupesa payment system preview" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">Edupesa Fee Payment System</h3>
+                            <p class="text-gray-600 mb-4">Digital fee payment solution for schools with secure APIs and admin dashboards.</p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Golang</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">MySQL</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">REST API</span>
+                                <span class="px-3 py-1 bg-cyan-100 text-cyan-800 rounded-full text-sm">Payment Gateway</span>
+                            </div>
+                            <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://ke.linkedin.com/company/edupesa-ke&ved=2ahUKEwii9Knt64ORAxUQ3wIHHWVgA8oQh-wKegQIGBAD&usg=AOvVaw19VEYhB8Z76TCSC11RziOe" class="text-cyan-600 font-medium flex items-center hover:text-cyan-800 transition">
+                                View Details
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Technical Skills</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Languages & Frameworks -->
+                    <div class="bg-white rounded-lg shadow-lg p-6" data-aos="fade-up">
+                        <h3 class="text-xl font-bold mb-6 text-gray-800">Languages & Frameworks</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Elixir (Phoenix)</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Golang (Echo)</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Java (Vanila and Springboot)</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Dart (Flutter)</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">JavaScript (Vue.js)</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">PHP (Phalcon, Laravel)</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Android Native</span>
+                                    <span>75%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Databases -->
+                    <div class="bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-xl font-bold mb-6 text-gray-800">Databases</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">MySQL</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">PostgreSQL</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">MongoDB</span>
+                                    <span>80%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Redis</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tools & Platforms -->
+                    <div class="bg-white rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                        <h3 class="text-xl font-bold mb-6 text-gray-800">Tools & Platforms</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Docker</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Kubernetes</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">GCP</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">AWS</span>
+                                    <span>85%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">CI/CD</span>
+                                    <span>90%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">Microservices</span>
+                                    <span>95%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-cyan-500 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Skills Icons -->
+                <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6" data-aos="fade-up">
+                    <div class="skill-item bg-white rounded-lg p-4 text-center shadow-md">
+                        <div class="text-3xl text-cyan-500 mb-2">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h4 class="font-medium">RabbitMQ/Kafka/Nats</h4>
+                    </div>
+                    <div class="skill-item bg-white rounded-lg p-4 text-center shadow-md">
+                        <div class="text-3xl text-cyan-500 mb-2">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h4 class="font-medium">WebSockets(EMQX, SocketIO)</h4>
+                    </div>
+                    <div class="skill-item bg-white rounded-lg p-4 text-center shadow-md">
+                        <div class="text-3xl text-cyan-500 mb-2">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4 class="font-medium">Asterisk(AVR System)</h4>
+                    </div>
+                    <div class="skill-item bg-white rounded-lg p-4 text-center shadow-md">
+                        <div class="text-3xl text-cyan-500 mb-2">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4 class="font-medium">HAProxy</h4>
+                    </div>
+                    <div class="skill-item bg-white rounded-lg p-4 text-center shadow-md">
+                        <div class="text-3xl text-cyan-500 mb-2">
+                            <i class="fas fa-file-code"></i>
+                        </div>
+                        <h4 class="font-medium">REST/GRPC/GraphQL APIs</h4>
+                    </div>
+                    <div class="skill-item bg-white rounded-lg p-4 text-center shadow-md">
+                        <div class="text-3xl text-cyan-500 mb-2">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4 class="font-medium">Grafana</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Services Offered</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden services-card" data-aos="fade-up">
+                        <div class="h-48 bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center">
+                            <i class="fas fa-gamepad text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">Betting & Gaming Platforms</h3>
+                            <p class="text-gray-600 mb-4">
+                                End-to-end gaming solutions including sportsbook, casino integrations, odds providers, and payment gateways. Custom platforms tailored to your specific market needs.
+                            </p>
+                            <ul class="mb-4 space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Sportsbook Development</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Casino & Game Integrations</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Payment Processor Integration</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Admin Dashboard & Reporting</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden services-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center">
+                            <i class="fas fa-server text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">DevOps & Cloud Infrastructure</h3>
+                            <p class="text-gray-600 mb-4">
+                                Expert infrastructure management including containerization, orchestration, and cloud deployment. Performance optimization for high-traffic applications.
+                            </p>
+                            <ul class="mb-4 space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Docker & Kubernetes Setup</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>GCP & AWS Architecture</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>CI/CD Pipeline Implementation</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Load Balancing & Scaling</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden services-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center">
+                            <i class="fas fa-mobile-alt text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">Mobile App Development</h3>
+                            <p class="text-gray-600 mb-4">
+                                Cross-platform and native mobile application development for iOS and Android. Specialized in Flutter for rapid, high-quality app deployment.
+                            </p>
+                            <ul class="mb-4 space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Flutter Cross-Platform Apps</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Native Android Development</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>API Integration</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Push Notifications & Real-time Features</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 4 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden services-card" data-aos="fade-up">
+                        <div class="h-48 bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center">
+                            <i class="fas fa-comments text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">SMS & Communication Systems</h3>
+                            <p class="text-gray-600 mb-4">
+                                Bulk SMS platforms with telecom integrations across Africa. Custom messaging solutions for businesses of all sizes.
+                            </p>
+                            <ul class="mb-4 space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Bulk SMS Platforms</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Telecom API Integration</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>SMPP Protocol Implementation</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Analytics & Reporting Dashboards</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 5 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden services-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="h-48 bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center">
+                            <i class="fas fa-credit-card text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">Payment Solutions</h3>
+                            <p class="text-gray-600 mb-4">
+                                Payment gateway integrations and custom payment systems for various industries. Multi-currency and cross-border payment solutions.
+                            </p>
+                            <ul class="mb-4 space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Payment Gateway Integration</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Mobile Money Solutions</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Secure Transaction Processing</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Financial Reporting Systems</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Service 6 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden services-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="h-48 bg-gradient-to-r from-cyan-400 to-cyan-600 flex items-center justify-center">
+                            <i class="fas fa-code-branch text-white text-6xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3">Microservices Architecture</h3>
+                            <p class="text-gray-600 mb-4">
+                                Design and implementation of scalable microservices architectures. Migration from monolithic to microservices-based systems.
+                            </p>
+                            <ul class="mb-4 space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Architecture Design</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Service Decomposition</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>API Gateway Implementation</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-cyan-500 mr-2"></i>
+                                    <span>Service Discovery & Monitoring</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16" data-aos="fade-up">Get In Touch</h2>
+                
+                <div class="flex flex-col md:flex-row gap-10">
+                    <div class="w-full md:w-1/2 mb-10 md:mb-0" data-aos="fade-right">
+                        <div class="bg-white rounded-lg shadow-lg p-8">
+                            <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-cyan-100 rounded-full p-3 mr-4">
+                                        <i class="fas fa-envelope text-cyan-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-700">Email</h4>
+                                        <a href="mailto:benbera25@gmail.com" class="text-gray-600 hover:text-cyan-600">benbera25@gmail.com</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-cyan-100 rounded-full p-3 mr-4">
+                                        <i class="fas fa-map-marker-alt text-cyan-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-700">Location</h4>
+                                        <p class="text-gray-600">P.O. BOX 9439-00300<br>Nairobi, Kenya</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-cyan-100 rounded-full p-3 mr-4">
+                                        <i class="fab fa-github text-cyan-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-700">GitHub</h4>
+                                        <a href="https://github.com/benbera" target="_blank" class="text-gray-600 hover:text-cyan-600">github.com/benbera</a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-cyan-100 rounded-full p-3 mr-4">
+                                        <i class="fab fa-bitbucket text-cyan-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-700">Bitbucket</h4>
+                                        <a href="https://bitbucket.org/ben_ra" target="_blank" class="text-gray-600 hover:text-cyan-600">bitbucket.org/ben_ra</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8">
+                                <h3 class="text-lg font-bold mb-4">Follow Me</h3>
+                                <div class="flex space-x-4">
+                                    <a href="https://www.linkedin.com/in/ben-bera-1bb226128/" class="bg-gray-100 hover:bg-cyan-100 text-gray-600 hover:text-cyan-600 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <a href="https://x.com/benbera25" class="bg-gray-100 hover:bg-cyan-100 text-gray-600 hover:text-cyan-600 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="" class="bg-gray-100 hover:bg-cyan-100 text-gray-600 hover:text-cyan-600 rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full md:w-1/2 md:pl-8" data-aos="fade-left">
+                        <div class="bg-white rounded-lg shadow-lg p-8">
+                            <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
+                            <form  id="contact-form" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                    <input type="text" id="name" name="name" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" placeholder="John Doe" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                                    <input type="email" id="email" name="email" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" placeholder="john@example.com" required>
+                                </div>
+                                <div>
+                                    <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                                    <input type="text" id="subject" name="subject" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" placeholder="Project Inquiry" required>
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                                    <textarea id="message" name="message" rows="5" class="form-input w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none" placeholder="Your message here..." required></textarea>
+                                </div>
+                                <div class="pt-2">
+                                    <button type="submit" id="submit-btn" class="btn-primary w-full py-3 px-6 rounded-md font-medium flex items-center justify-center">
+                                        <span>Send Message</span>
+                                        <i id="spinner" class="fas fa-spinner fa-spin ml-2 hidden"></i>
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <!-- Thank you message (hidden initially) -->
+                            <div id="success-message" class="hidden text-center py-8">
+                                <div class="text-5xl text-green-500 mb-4">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-2">Thank You!</h3>
+                                <p class="text-gray-600 mb-6">Your message has been sent successfully. I'll get back to you as soon as possible.</p>
+                                <button id="reset-form" class="btn-primary py-2 px-6 rounded-md font-medium">Send Another Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-white py-8 border-t">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-gray-600">© 2025 Ben Bera Kemboi.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <a href="#hero" id="back-to-top" class="fixed bottom-6 right-6 bg-cyan-500 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- AOS Animation Script -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script id="app-script">
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+        
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+        });
+        
+        // Scroll to section when clicking nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // View More Experience button
+        const viewMoreBtn = document.getElementById('view-more-experience');
+        const moreExperience = document.getElementById('more-experience');
+        
+        if (viewMoreBtn && moreExperience) {
+            viewMoreBtn.addEventListener('click', () => {
+                moreExperience.classList.toggle('hidden');
+                viewMoreBtn.textContent = moreExperience.classList.contains('hidden') ? 
+                    'View More Experience' : 'View Less Experience';
+                
+                // Reinitialize AOS for newly visible elements
+                AOS.refresh();
+            });
+        }
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const spinner = document.getElementById('spinner');
+        const successMessage = document.getElementById('success-message');
+        const resetFormBtn = document.getElementById('reset-form');
+        
+        // Load form draft from localStorage
+        window.addEventListener('DOMContentLoaded', () => {
+            const formDraft = JSON.parse(localStorage.getItem('contactFormDraft'));
+            if (formDraft) {
+                document.getElementById('name').value = formDraft.name || '';
+                document.getElementById('email').value = formDraft.email || '';
+                document.getElementById('subject').value = formDraft.subject || '';
+                document.getElementById('message').value = formDraft.message || '';
+            }
+        });
+        
+        // Save form draft to localStorage as user types
+        document.querySelectorAll('#contact-form input, #contact-form textarea').forEach(input => {
+            input.addEventListener('input', () => {
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+                localStorage.setItem('contactFormDraft', JSON.stringify(formData));
+            });
+        });
+        
+        // Form submission
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic client-side validation
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const subject = document.getElementById('subject').value.trim();
+                const message = document.getElementById('message').value.trim();
+                
+                if (!name || !email || !subject || !message) {
+                    alert('Please fill out all fields.');
+                    return;
+                }
+                
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                spinner.classList.remove('hidden');
+                
+                // Simulate form submission (for prototype)
+                setTimeout(() => {
+                    // Hide form, show success message
+                    contactForm.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    
+                    // Clear localStorage draft
+                    localStorage.removeItem('contactFormDraft');
+                    
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    spinner.classList.add('hidden');
+                }, 1500);
+            });
+        }
+        
+        // Reset form button
+        if (resetFormBtn) {
+            resetFormBtn.addEventListener('click', () => {
+                // Show form, hide success message
+                contactForm.classList.remove('hidden');
+                successMessage.classList.add('hidden');
+                
+                // Clear form fields
+                contactForm.reset();
+                
+                // Clear localStorage
+                localStorage.removeItem('contactFormDraft');
+            });
+        }
+        
+        // Back to top button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // Highlight active nav item based on scroll position
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.navbar-item');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
